@@ -1,0 +1,89 @@
+
+        <!-- <div class="modal login"> -->
+        <ion-view title="Login'" class="login" cache-view="false" style="border:1px solid #b2b2b2;" 
+        ng-cloak style="background:rgba(211,211,211,.8)">
+            <ion-header-bar style="background:rgba(211,211,180,8);border:#b2b2b2;border-bottom-width:1px;">
+                <h1 class="title" style="color: white;font-size: 20px;margin: 0px;text-align: center;"><b>Login</b></h1>
+                <!-- <div class="buttons">
+                    <button class="button button-clear" ng-click="closeLogin()">Close</button>
+                </div> -->
+            </ion-header-bar>
+            <ion-content>
+                <form target='_blank' class="loginForm" ng-submit="validateLogin()" name="login" novalidate>
+                    <div class="list">
+                        <label class="item item-input">
+                          <!-- <span class="input-label">Email</span> -->
+                          <input type="email" name="email" ng-model="loginData.username" placeholder="e.g.,hellman@gmail.com" required>
+                        </label> 
+                       <!--  <label class="item item-input">
+                          <!-- <span class="input-label">Email</span>
+                          <input type="text" name="name" ng-model="name" placeholder="e.g.,bhuvnesh" required>
+                        </label>  --> 
+                        <label class="item item-input" ng-show="login.email.$dirty && login.email.$invalid">
+                         <span style="color:red">
+                          <span ng-show="login.email.$error.required">This can not be blank</span>
+                           <span ng-show="login.email.$error.email">This is not a valid email address.
+                           </span>
+                          </span>   
+                        </label>           
+                        <label class="item item-input">
+                            <!-- <span class="input-label">Password</span> -->
+                            <input type="password" placeholder="Password" ng-model="loginData.password" required>
+                        </label>
+                        <label class="item item-input" style="color:red" ng-show="options.showError">
+                            <span>{{options.ErrorMessage}}</span>
+                        </label>
+                        <label class="item">
+                            <button class="button button-block button-positive" type="submit" ng-cloak>
+                                Log In
+                            </button>
+                        </label>                  
+                    </div>
+                </form>
+                <div style="margin-top:10px;">
+                <p style="color: darkorange;">Forgot your password? 
+                <a ui-sref="forgetpassword" nav-transition="none" ng-click="resetPassword()">Reset your password.</a>
+                </p>
+                <p style="color: darkorange;"> Don't have an account yet? 
+                <a nav-transition="none" ui-sref="register">Register Here.</a>
+                </p>
+                </div>   
+            </ion-content>
+          </ion-view>  
+      <!--   </div> -->
+
+
+       <!--  <div class="modal">
+            <ion-header-bar>
+                <h1 class="title">{{literals['Login'][settings.language]}}</h1>
+                <div class="buttons">
+                    <button class="button button-clear" ng-click="closeLogin()">{{literals['Close'][settings.language]}}</button>
+                </div>
+            </ion-header-bar>
+            <ion-content>
+                <form target='_blank' ng-controller="LoginController" class="loginForm">
+                    <div class="list">
+                        <label class="item item-input noBorder">
+                            <span class="input-label">Username</span>
+                            <input type="text" ng-model="loginData.username" required>
+                        </label>
+                        <label class="item item-input noBorder">
+                            <span class="input-label">Password</span>
+                            <input type="password" ng-model="loginData.password" required>
+                        </label>
+                        <label class="item item-input noBorder">
+                            <span ng-show="options.showError">{{options.showError}}</span>
+                        </label>
+                        <label class="item noBorder">
+                            <button class="button button-block button-positive" type="submit" ng-click="doLogin()">
+                                Log In</button>
+                        </label>
+                        <label class="item noBorder">
+                            <button class="button button-block" ng-click="openModal(4)" class="text-center item">
+                                {{literals['Forgot password'][settings.language]}}</button>
+                        </label>
+                    </div>
+                </form>
+            </ion-content>
+        </div>
+   -->

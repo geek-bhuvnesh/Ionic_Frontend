@@ -1,0 +1,38 @@
+<ion-modal-view id="results" ng-controller="ResultsCtrl">
+    <!-- Header bar -->
+    <div class="bar bar-header bar-positive">
+        <!-- Back Button -->
+       <!--  <button class="button button-positive icon ion-chevron-left"></button> -->
+        <h4 class="title">{{userName}}</h4>
+    </div>
+    <!-- Main content -->
+    <ion-content class="has-header has-subheader">
+        <!-- Visible when all results is filtered -->
+        <div id="bgMsg">No Results</div>
+        <!-- Results List -->
+        <ion-list>
+            <ion-item ng-click="openBrowser('{{item.bookingUrl}}')" target="_blank" ng-repeat="item in results | orderBy:predicate" ng-show="carpark_type[item.parking_type]" class="result item-icon-right">
+                <div class="row">
+                    <div class="col">
+                        <h3>Carpark_name</h3>
+                        <p>
+                            <img src="img/stars/stars_{{item.avg_rating}}.png" class="rating">
+                            <i class="{{item.parking_type}} ion-record key"></i>&nbsp;
+                            <small>partner_name</small>
+                        </p>
+                        <p class="info">
+                            <span class="ion-clock">transfer_time_int
+                                <span ng-show="item.transfer_time_int != 'N/A'">mins</span>
+                            </span>
+                            <span class="ion-ios7-loop-strong" ng-show="item.transfer_time_int > 0">transfer_freq</span>
+                        </p>
+                    </div>
+                    <div class="col col-20 price">
+                        <div class="loading logo_container" rn-lazy-background="'{{item.logoImage}}'" rn-lazy-loading-class="loading" rn-lazy-loaded-class="loaded"></div>
+                        <strong>Amount</strong>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

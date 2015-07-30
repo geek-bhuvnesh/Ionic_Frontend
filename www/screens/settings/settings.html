@@ -1,0 +1,75 @@
+
+<ion-view enable-menu-with-back-views="true">
+     <ion-header-bar id="energized">
+      <a class="button icon-left ion-chevron-left button-clear button-dark" style="color:white;" ui-sref="home({userId:userData._id})"></a>  
+<!--      <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="backToHome();"></a>  --> 
+     <h1 class="title" style="color: white;font-size: 20px;margin: 0px;text-align: center;">Settings</h1>
+     </ion-header-bar>
+     <ion-content scroll="false" style="padding:0px; background: rgba(211,211,211,.8);">
+      <div class="list">
+       <a class="item item-icon-left" ng-click="changePasswordPopUp()" style="background: rgba(211,211,211,.8);">
+         <i class="icon ion-email"></i>
+         Change Password
+       </a>
+       <!-- <a class="item item-icon-left" ng-click="logout()"> -->
+       <a class="item item-icon-left" nav-transition="none" ui-sref="login" style="background: rgba(211,211,211,.8);">
+       <i class="icon ion-log-out"></i>
+         Log out
+       </a>
+     </div>
+    </ion-content>
+    <ion-footer-bar style="padding:0px;" id="energized">
+     <div class="tabs tabs-icon-left">
+      <a class="tab-item" style="color: white;" ng-click="goTOHome();" ng-class="{'homeSelect':!homeScreen}">
+       <i class="icon ion-home"></i>
+        <b> Home </b>
+      </a>
+      <a class="tab-item"  style="color: white;" ng-class="{'homeSelect':homeScreen}">
+       <i class="icon ion-gear-a"></i>
+         <b>Settings </b>
+      </a>
+     </div>
+    </ion-footer-bar>    
+</ion-view>
+
+ <script id="changepassword.html" type="text/ng-template">
+          <div class="modal"  style="border:1px solid #b2b2b2;">
+            <ion-header-bar style="background: rgba(211,211,180,8);">
+                 <h1 class="title" style="color: white;font-size: 20px;margin: 0px;text-align: center;">Change Password
+                 </h1>
+                  <div class="buttons">
+                      <button ng-click="closeChangePasswordPopUp()" id="addCustomerButton">
+                       <i class="icon ion-close" style="color:white;"></i>
+                      </button>
+                   </div>
+            </ion-header-bar>
+            <ion-content scroll="false" style="background: rgba(211,211,211,.8);">
+              <form target='_blank' class="loginForm" ng-class="{'popUpContent': popMessage}" ng-submit="changePassword()" name="changepassword" novalidate>
+                <div class="list">
+                  <label class="item item-input noBorder">
+                    <input type="password" id="heightSet" name="oldPassword" placeholder="Old Password" ng-model="change_password_data.current_password" ng-disabled="isDisabled" required="true" /> 
+                  </label>  
+                  <label class="item item-input noBorder"ng-disabled="isDisabled">
+                    <input type="password" id="heightSet" ng-disabled="isDisabled" name="newPassword" placeholder="New Password" ng-model="change_password_data.new_password">
+                 </label>
+                 <label class="item item-input noBorder">
+                    <input type="password" id="heightSet" ng-disabled="isDisabled" name="confirmPassword" placeholder="Confirm Password"  ng-model="change_password_data.confirm_password">
+                 </label>
+                 <label class="item item-input noBorder" ng-show="options.showError" style="color:red;">
+                 <div>{{errorMessage}}</div>
+                 </label>
+                 <label class="item noBorder"> 
+                    <button class="button button-block button-positive" ng-disabled="isDisabled" type="submit">
+                      Confirm
+                    </button>
+                  </label>  
+               </div>
+            </form>
+            <label class="noBorder popupMess" ng-show="popMessage" style="width:50%;">
+                          <div style="text-align: center;font-size: 16px;color: brown;font-weight: bold;">
+                          {{poupmessage}}
+                          </div>
+            </label>
+           </ion-content>
+          </div>
+    </script>

@@ -1,0 +1,31 @@
+<!-- <div class="list" style="margin-top: 44px;">
+   <div ng-repeat="customer in allCustomers" class="item item-thumbnail-left customerName">
+    <a>
+      <img src="img/bhuvnesh_image_second.jpg">
+     <h2>Name</h2>
+     <p ng-click="updateCustomer(customer,$index)"><b class="customerName">{{customer.name}}</b></p>
+    </a>
+    <button class="button button-small">
+      Edit
+    </button>
+   </div> 
+  
+</div> -->
+<!-- <ion-item ng-repeat="customer in allCustomers" class="customerName">
+         <p ng-click="updateCustomer(customer,$index)"><b class="customerName">{{customer.name}}</b></p>
+         <br> -->
+<div class="list" style="margin-top: 44px;">
+   <div class="item item-button-right"  ng-repeat="customer in allCustomers">
+    <a class="item item-thumbnail-left" style="border-width: 0px;">
+      <img src="img/bhuvnesh_image_second.jpg">
+     <!--  <h2>Name</h2> -->
+      <p style="position: absolute;"><b class="customerName">{{customer.name}}</b></p>
+      <button class="button button-small" style="float:right;" ng-click="updateCustomer(customer,$index)">
+       Edit
+    </button>
+    </a>
+   <!--  <button class="button button-positive">
+      <i class="icon ion-ios-telephone"></i>
+    </button> -->
+  </div>
+</div>  

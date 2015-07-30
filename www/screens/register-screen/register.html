@@ -1,0 +1,42 @@
+<ion-view title="'Signup'" enable-menu-with-back-views="true" class="login" cache-view="false" style="border:1px solid #b2b2b2;">
+  <ion-header-bar style="background:rgba(211,211,180,8);border:#b2b2b2;border-bottom-width:1px;">
+     <h1 class="title" style="color: white;font-size: 20px;margin: 0px;text-align: center;">Sign Up</h1>
+  </ion-header-bar>
+  <ion-content scroll="false">
+    <form ng-submit="Signup()" name="register" novalidate>
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" name="username" placeholder="e.g.Mike Helmen" ng-model="loginData.name"  
+          style="text-transform: capitalize;" autocomplete="off" capitalize-first required>
+        </label>  
+        <label class="item item-input" ng-show="register.username.$dirty && register.username.$invalid">  
+          <span style="color:red">
+          <span ng-show="register.username.$error.required">User Name Required</span>
+          </span>
+        </label> 
+        <label class="item item-input">
+          <input type="email" name="email" placeholder="e.g.,hellman@gmail.com" ng-model="loginData.email" required>
+        </label>   
+        <label class="item item-input" ng-show="register.email.$dirty && register.email.$invalid">  
+          <span style="color:red">
+          <span ng-show="register.email.$error.required">This can not be blank</span>
+          <span ng-show="register.email.$error.email">This is not a valid email address.</span>
+          </span>
+        </label> 
+        <label class="item item-input">
+          <input type="password" placeholder="Password" ng-model="loginData.password" required>
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="ConfirmPassword" ng-model="loginData.confirmPassword">
+        </label>
+        <div>
+          <button class="button button-block button-positive" ng-disabled="register.username.$dirty &&  register.username.$invalid ||
+          register.email.$dirty && register.email.$invalid" type="submit">Create account</button>
+        </div>
+        <div style="text-align: center">
+          Or <a nav-transition="none" ui-sref="login">Already Have an account?</a>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

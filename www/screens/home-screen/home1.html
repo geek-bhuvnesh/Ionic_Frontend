@@ -1,0 +1,38 @@
+
+
+<ion-side-menus>
+  
+ <!--  <ion-header-bar>
+      <h1 class="title">Ionic App</h1>
+  </ion-header-bar> -->
+  <!-- Header bar goes below -->
+  <ion-pane ion-side-menu-content>
+    
+    <ion-nav-bar class="bar-balanced">
+      <ion-nav-back-button class="button-clear button-icon icon ion-chevron-left"></ion-nav-back-button>
+      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-bar>
+
+    <ion-nav-view name="mainContent">
+    </ion-nav-view>
+
+  </ion-pane>
+
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+    <header class="bar bar-header bar-balanced">
+      <h1 class="title">Elite Schedule</h1>
+    </header>
+    <ion-content>
+      <ion-list>
+        <ion-item nav-clear menu-close>Teams</ion-item>
+        <ion-item nav-clear menu-close>Standings</ion-item>
+        <!-- <ion-item nav-clear menu-close ui-sref="home.teams">Teams</ion-item>
+        <ion-item nav-clear menu-close ui-sref="home.standings">Standings</ion-item> -->
+      </ion-list> 
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>
+
+<ion-nav-view> </ion-nav-view>   <!--normal use ui-view -->

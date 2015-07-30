@@ -1,0 +1,368 @@
+/* Empty. Add your own CSS if you like */
+/* Empty. Add your own CSS if you like */
+.noBorder{
+     border: none;
+     background: #fff;
+}
+
+.modal, .pane {
+   min-height: 100%;
+   top: 0%;
+   right: 0%;
+   bottom: 0%;
+   left: 0%;
+   width: 100% !important;
+}
+
+.login {
+  position: absolute;
+  display: block;
+  width: 70% !important;
+  height: 350px;
+  right: 15%;
+  left: 15%;
+  top: 75px;
+  padding: 10px;
+  min-height: 300px !important;
+/* background-color: #fff; */
+}
+
+
+html,body
+{
+    width: 100% !important;
+    height:100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+    /*background: -webkit-linear-gradient(160deg, rgba(124, 178, 40, 0.8), rgba(80, 179, 226, 0.8));*/
+    background: rgba(211,211,211,.8);-webkit-box-shadow: inset 0 0 0 rgba(0,0,0,.5);
+}
+
+.scroll-content {
+  padding: 10px;
+}
+
+/*@media (min-width: 680px) {
+.modal {
+   top: 0%; 
+   right: 0%; 
+   bottom: 0%; 
+   left: 0%; 
+   width: 100%!important; 
+}
+}*/
+
+@media (max-width: 680px) {
+.view-container {
+   top: 0px; 
+   right: 0%; 
+   bottom: 0%; 
+   left: 0%; 
+  /* background: -webkit-linear-gradient(160deg, rgba(124, 178, 40, 0.8), rgba(80, 179, 226, 0.8));*/
+  background: rgba(211,211,211,.8);-webkit-box-shadow: inset 0 0 0 rgba(0,0,0,.5);
+}
+}
+
+.containerClass {
+  position: none;
+  display: none;
+  width: 100%;
+  height: 100%;
+  right: 100%;
+  left: 100%;
+  top: 75px;
+  background: -webkit-linear-gradient(160deg, rgba(124, 178, 40, 0.8), rgba(80, 179, 226, 0.8));
+  padding: 10px;
+}
+
+.btn{
+  border-color: #e6b400;
+  background-color: #ffc900;
+  background-image: linear-gradient(0deg, #e6b400, #e6b400 50%, transparent 50%);
+  color: #fff;
+}
+.btn1{
+  width: 150px;
+  margin-top: 15px;
+  margin-left: 30px;
+}
+.customerName{
+  text-align: center;
+  font-size: 20px;
+}
+
+.list1{
+  margin-bottom: 0px;
+  overflow-y: scroll;
+  min-height: 0px;
+  max-height: 300px;
+  overflow-x: hidden;
+}
+.item-button-right, a.item.item-button-right, button.item.item-button-right {
+   padding-right: 0px; 
+}
+.button-small{
+  float: right;
+  background-color: goldenrod;
+  min-width: 65px;
+  min-height: 30px;
+  font-size: 15px;
+  line-height: 26px;
+}
+
+.homeContent{
+ /* margin-left: 276px;*/
+ } 
+
+ @media (max-height: 350px) {
+.list{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+}
+
+div.item {
+  /* border-color: #ddd; */
+ /* background: -webkit-linear-gradient(160deg, rgba(124, 178, 40, 0.8), rgba(80, 179, 226, 0.8));*/
+  color: #444;
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: -1px;
+  padding: 20px;
+  border-width: 0px; 
+  /* border-style: solid; */
+  font-size: 16px;
+ } 
+
+ div.listTwo.item{
+  border-color: #ddd;
+  background-color: #fff;
+  color: green;
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: -1px;
+  padding: 16px;
+  border-width: 0px;
+  font-size: 20px;
+}
+
+.resetPassSucc{
+  opacity: 1;
+  -webkit-transform: translate3d(0%, 0px, 0px);
+  height: 20px;
+  min-height: 100px !important;
+  padding: 15px;
+  font-size: 16px;
+  top: 25%;
+  left: 15%;
+  bottom: 25%;
+  right: 15%;
+}
+.resetPassBeforeSubmit{
+  height: 200px;
+  opacity: 1;
+  -webkit-transform: translate3d(0%, 0px, 0px);
+}
+
+#addCustomerButton{
+ background-color: #0065FF;
+ border: 1px;
+ margin-left: 10px;
+ padding: 7px;
+ padding-left: 12px;
+ padding-right: 12px;
+ border-radius: 100px;
+}
+.ion-plus:before{
+  content: "\f218";
+ font-size: 20px;
+ color: white;
+}
+
+.tabs-icon-left.tabs .tab-item, .tabs-icon-left > .tabs .tab-item, .tabs-icon-right.tabs .tab-item, .tabs-icon-right > .tabs .tab-item {
+  font-size: 18px;
+  color: black;
+}
+
+/*bar.bar-energized {
+   /* border-color: #e6b400; 
+   background-color: rgba(124,178,40,0.95);
+   /* background-image: linear-gradient(0deg, #e6b400, #e6b400 50%, transparent 50%);
+   color: #fff;
+}
+*/
+#energized{
+  /*background-color: rgba(124,178,40,0.95);*/
+  background: rgba(211,211,180,8);
+  border-bottom-width: 1px;
+  border-color: #b2b2b2;
+}
+
+div.tabs{
+  height:44px;
+  /*background-color: rgba(124,178,40,0.95)*/
+  background: rgba(211,211,180,8);
+}
+
+.headerText{
+  color: white;
+  font-size: 20px;
+  margin: 0px;
+  text-align: center;
+}
+
+/* 
+  Allow angular.js to be loaded in body, hiding cloaked elements until 
+  templates compile.  The !important is important given that there may be 
+  other selectors that are more specific or come later and might alter display.  
+ */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+/*
+@media (min-width: 300px){
+.modal {
+ top: 10%;
+ right: 10%;
+ bottom: 30%;
+ left: 10%;
+ /*min-height: 250px!important;
+ height:60%;
+ width: 80%;
+ }
+}*/
+
+$('.model').modal({
+    backdrop: 'static',
+    keyboard: false
+})
+
+div.modal-wrapper{
+  height:100%;
+}
+
+.homeSelect{
+  background-color: #387ef5;
+}
+
+.spinner svg {
+  width: 35px;
+  height: 35px;
+ /* stroke: #444;
+  fill: #444;*/
+}
+
+.loading-container .loading {
+padding: 5px; 
+border-radius: 20px;
+background:cadetblue;
+color: #fff;
+text-align: center;
+text-overflow: ellipsis;
+font-size: 20px;
+border:1px solid #b2b2b2;
+}
+/*#pop{
+  background: rgba(211,211,180,8);border: #b2b2b2;border-bottom-width: 1px;
+  border-radius: 25px;
+}
+*/
+
+.popup-body{
+  background: rgba(211,211,180,8);border: #b2b2b2;border-bottom-width: 1px;
+  border-radius: 25px;
+}
+.popup{
+  border: 5px solid #b2b2b2;
+  border-radius: 10px;
+}
+
+.popup-title{
+  font-size: 20px;
+  color: #b2b2b2;
+  font-weight: bold;
+}
+
+.slide-ios,
+.slide-left-right-ios7,
+.slide-right-left-ios7.reverse {
+  > .ng-enter, &.ng-enter,
+  > .ng-leave, &.ng-leave {
+    right: -1px;    
+    left: -1px;
+  }
+  > .ng-enter, &.ng-enter {
+    /* NEW content placed far RIGHT BEFORE it slides IN from the RIGHT */
+    z-index: 2;
+  }
+
+}
+.slide-ios.reverse,
+.slide-left-right-ios7.reverse,
+.slide-right-left-ios7 {
+  > .ng-enter, &.ng-enter, > .ng-leave, &.ng-leave {
+    right: -1px;    
+    left: -1px;
+  }
+  > .ng-enter, &.ng-enter {
+    /* NEW content placed far LEFT BEFORE it slides IN from the LEFT */
+    z-index: 1;
+  }
+
+}
+
+/*.pane, .view {
+  background: rgba(211,211,211,.8);
+}*/
+
+[nav-view-transition="android"][nav-view-direction="forward"],
+[nav-view-transition="android"][nav-view-direction="back"] {
+  /*background-color: transparent;*/
+  background-color: rgba(211,211,180,8);
+}
+/*.popupMess {
+  position: absolute;
+  z-index: 999;
+  left: 15%;
+  background-color: rgba(211,211,180,8);
+  top: 30%;
+  height: 50px;
+  border-radius: 10px;
+  width: 50%;
+  border: 1px solid #b2b2b2;
+}*/
+
+.backgroundClass{
+  display:block;
+  position:fixed;
+  height:682px;
+  widht:100%;
+  background:black;
+  opacity:0.5;
+}
+
+.has-header { 
+  -webkit-transition: 200ms top; 
+}
+
+[nav-view-transition="ios"][nav-view-direction="forward"], [nav-view-transition="ios"][nav-view-direction="back"] {
+  background-color: rgba(211,211,180,8);
+}
+.popupMess {
+  position: absolute;
+  z-index: 999;
+  left: 15%;
+  right: 15%;
+  background-color: rgba(211,211,180,8);
+  top: 15%;
+  border-radius: 10px;
+  width: 70%;
+  border: 1px solid #B2B247;
+  padding: 10px;
+}
+.popUpContent{
+  opacity: 0.5
+}

@@ -28,11 +28,24 @@ Ionic_Frontend.controller('RegistrationController', ['$scope', "$location", "$wi
         $scope.loginData.password = $sanitize($scope.loginData.password);
         $scope.loginData.confirmPassword = $sanitize($scope.loginData.confirmPassword);
 
-        if($scope.loginData.name.length <3){
+        if(validator.isByteLength($scope.loginData.name,3,10)){
+          alert("User Name must contain 3 charatcer and Max 10 char:");
+          $scope.options.showError = true;
+          $scope.errorMessage = "User Name must contain 3 charatcer and Max 10 char:";
+          $ionicLoading.hide();
+          return;
+        }
+        /*if($scope.loginData.name.length <3){
           $ionicLoading.hide();  
           alert("user name must contain atleast 3 charachters:");
+        }*/
+        
+        if(!validator.isEmail($scope.loginData.email)){
+          $scope.options.showError = true;
+          $scope.errorMessage = "Please Enter valid Email:";
+          $ionicLoading.hide();
+          return;
         }
-
         if ($scope.loginData.password != $scope.loginData.confirmPassword) {
             $ionicLoading.hide();
             alert("These passwords don't match. Try again");

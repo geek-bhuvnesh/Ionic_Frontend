@@ -53,6 +53,9 @@ Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$i
     $scope.validateLogin = function () {
        /* $ionicHistory.clearHistory();
         $ionicHistory.clearCache();*/
+
+       
+
        console.log(">>>>>>>>>>>>>:" + $scope.height);
        $("body").height($scope.height);
        $("body").css("background","rgba(211,211,211,.8)");
@@ -76,6 +79,11 @@ Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$i
             disableBack: true,
             historyRoot: true
         });
+
+        if(validator.isEmail($scope.loginData.username)){
+         alert("email proper");
+   
+
         console.log("$scope.name:",$scope.name);
         if (!$scope.loginData.password && !$scope.loginData.username) {
             $scope.options.showError = true;
@@ -111,6 +119,14 @@ Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$i
           });
 
         }
+
+      } else{
+          $ionicLoading.hide();
+          $rootScope.$broadcast('loading:hide');
+          $scope.options.showError = true;
+          console.log("email address is not valid:");
+          $scope.options["ErrorMessage"] = "Please Enter valid Email address";
+      }
     }
 
    /* $scope.closeLogin = function() {

@@ -34,7 +34,7 @@
                             <span>{{options.ErrorMessage}}</span>
                         </label>
                         <label class="item">
-                            <button class="button button-block button-positive" type="submit" ng-cloak>
+                            <button class="button button-block button-positive" type="submit"  ng-disabled="login.email.$dirty && login.email.$invalid" ng-cloak>
                                 Log In
                             </button>
                         </label>                  

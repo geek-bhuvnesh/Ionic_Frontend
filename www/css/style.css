@@ -18,7 +18,7 @@
   position: absolute;
   display: block;
   width: 70% !important;
-  height: 350px;
+  height: 450px;
   right: 15%;
   left: 15%;
   top: 75px;
@@ -365,4 +365,47 @@ border:1px solid #b2b2b2;
 }
 .popUpContent{
   opacity: 0.5
+}
+
+div>button>a{
+  text-decoration: none;
+}
+
+.fb {
+    background-color: #476ABB;
+    background-image: url(../img/fb.jpg);
+}
+
+.gp {
+    background-color: #d34836;
+    background-image: url(../img/google.jpg);
+}
+
+.tw {
+    background-color: #00aced;
+    background-image: url(../img/twet.jpg);
+}
+
+.socialButton a,.your_details a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.your_details {
+    margin: 10px 0;
+}
+
+.log_socialbtn {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 3px;
+}
+
+.socialButton,.socialButtonLogin {
+    background-position: 5px;
+    background-repeat: no-repeat;
+    padding: 3px;
+    background-size: 18px;
+    text-align: center;
 }

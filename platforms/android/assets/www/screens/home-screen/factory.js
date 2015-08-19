@@ -1,13 +1,15 @@
-Ionic_Frontend.factory("addCustomer",  ["$resource", function($resource) {
+Ionic_Frontend.factory("addCustomer",  ["$resource","ionicconfig", function($resource,ionicconfig) {
   /* return $resource("http://223.30.167.150:5500/addCustomer/:userId",{ userId: "@userId"},{*/
-     return $resource("http://192.168.100.98:5500/addCustomer/:userId",{ userId: "@userId"},{
+    /* return $resource("http://192.168.100.98:5500/addCustomer/:userId",{ userId: "@userId"},{*/
+    return $resource(ionicconfig.url+":5500/addCustomer/:userId",{ userId: "@userId"},{
      save: {method:'POST', withCredentials:true}
    });
 }]);
 
-Ionic_Frontend.factory("updateCustomer",  ["$resource", function($resource) {
+Ionic_Frontend.factory("updateCustomer",  ["$resource","ionicconfig",function($resource,ionicconfig) {
   /* return $resource("http://223.30.167.150:5500/updateCustomer/:customerId",{ customerId: "@customerId"}, */
-    return $resource("http://192.168.100.98:5500/updateCustomer/:customerId",{ customerId: "@customerId"},
+   /* return $resource("http://192.168.100.98:5500/updateCustomer/:customerId",{ customerId: "@customerId"},*/
+     return $resource(ionicconfig.url+":5500/updateCustomer/:customerId",{ customerId: "@customerId"},
       {
        update: {
            method: "PUT"
@@ -15,9 +17,10 @@ Ionic_Frontend.factory("updateCustomer",  ["$resource", function($resource) {
    });
 }]);
 
-Ionic_Frontend.factory("addCustomerDetails",  ["$resource", function($resource) {
+Ionic_Frontend.factory("addCustomerDetails",  ["$resource","ionicconfig",function($resource,ionicconfig) {
    /*return $resource("http://223.30.167.150:5500/addCustomerDetails/:customerId",{ customerId: "@customerId"},{*/
-    return $resource("http://192.168.100.98:5500/addCustomerDetails/:customerId",{ customerId: "@customerId"},{  
+    //return $resource("http://192.168.100.98:5500/addCustomerDetails/:customerId",{ customerId: "@customerId"},{  
+      return $resource(ionicconfig.url+":5500/addCustomerDetails/:customerId",{ customerId: "@customerId"},{
        update: {
            method: "PUT"
        }
@@ -31,8 +34,9 @@ Ionic_Frontend.factory("addCustomerDetails",  ["$resource", function($resource) 
    });
 }]);*/
 
-Ionic_Frontend.factory("getCustomers", ["$resource", function($resource) {
-   return $resource("http://192.168.100.98:5500/allCustomers/:userId", {
+Ionic_Frontend.factory("getCustomers", ["$resource","ionicconfig",function($resource,ionicconfig) {
+   /*return $resource("http://192.168.100.98:5500/allCustomers/:userId", {*/
+    return $resource(ionicconfig.url+":5500/allCustomers/:userId", {
        userId: '@userId'
    }, {});
 }]);

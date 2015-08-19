@@ -1,8 +1,6 @@
 
 Ionic_Frontend.controller('RegistrationController', ['$scope', "$location", "$window", "$ionicModal", "$state", "$cordovaToast","$sanitize","SignUpDataFactory","$ionicLoading","$rootScope", function ($scope, $location, $window, $ionicModal, $state, $cordovaToast,$sanitize,SignUpDataFactory,$ionicLoading,$rootScope) {
-    //Admin User Controller (login, logout)
     console.log("Inside Registration Controller:");
-    /*$("body").css("background","-webkit-linear-gradient(160deg, rgba(124, 178, 40, 0.8), rgba(80, 179, 226, 0.8))");*/
     $("body").height($scope.height);
     $scope.loginData ={
         "name" : "",
@@ -21,8 +19,7 @@ Ionic_Frontend.controller('RegistrationController', ['$scope', "$location", "$wi
         $rootScope.$broadcast('loading:show');
         $scope.loginData.name = $sanitize($scope.loginData.name);
         console.log("$scope.loginData.name:", $scope.loginData.name);
-       /* console.log("name type of:", typeof($scope.loginData.name));
-        console.log("length:", $scope.loginData.name.length);*/
+  
 
         $scope.loginData.email = $sanitize($scope.loginData.email);           
         $scope.loginData.password = $sanitize($scope.loginData.password);
@@ -35,10 +32,6 @@ Ionic_Frontend.controller('RegistrationController', ['$scope', "$location", "$wi
           $ionicLoading.hide();
           return;
         }
-        /*if($scope.loginData.name.length <3){
-          $ionicLoading.hide();  
-          alert("user name must contain atleast 3 charachters:");
-        }*/
         
         if(!validator.isEmail($scope.loginData.email)){
           $scope.options.showError = true;

@@ -8,7 +8,7 @@
                     <button class="button button-clear" ng-click="closeLogin()">Close</button>
                 </div> -->
             </ion-header-bar>
-            <ion-content>
+            <ion-content scroll="false">
                 <form target='_blank' class="loginForm" ng-submit="validateLogin()" name="login" novalidate>
                     <div class="list">
                         <label class="item item-input">
@@ -34,10 +34,11 @@
                             <span>{{options.ErrorMessage}}</span>
                         </label>
                         <label class="item">
-                            <button class="button button-block button-positive" type="submit" ng-cloak>
+                            <button class="button button-block button-positive" type="submit"  ng-disabled="login.email.$dirty && login.email.$invalid" ng-cloak>
                                 Log In
                             </button>
-                        </label>                  
+                        </label> 
+                                       
                     </div>
                 </form>
                 <div style="margin-top:10px;">
@@ -47,7 +48,36 @@
                 <p style="color: darkorange;"> Don't have an account yet? 
                 <a nav-transition="none" ui-sref="register">Register Here.</a>
                 </p>
-                </div>   
+                </div>
+                <div>
+                  <a href="{{homeurl}}:5500/auth/facebook/login?success_redirect={{homeurl}}:8100{{location}}&amp;failure_redirect={{homeurl}}:8100/#/login">
+                        Login with Facebook
+                  </a>       
+                </div> 
+                <!-- <div>
+                    <a ng-click="facebookLogin();">
+                        Login with Facebook
+                    </a>        
+                </div>  -->
+                <div>
+                        <button class="button button-block button-positive">
+                        <a href="/auth/twitter/login">
+                          Login with Twitter
+                       </a>
+                       </button>  
+               </div>
+               <div>
+                        <button class="button button-block button-positive">
+                        <a href="/oauth2/google/login">
+                         Login with Google</a>
+                        </button>    
+               </div>
+               <div>
+                <button class="button button-block button-positive">
+                <a href="/auth/github/login">
+                  Login with Github</a>
+                </button>    
+              </div>         
             </ion-content>
           </ion-view>  
       <!--   </div> -->

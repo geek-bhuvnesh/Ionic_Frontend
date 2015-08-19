@@ -18,7 +18,7 @@
   position: absolute;
   display: block;
   width: 70% !important;
-  height: 350px;
+  /*height: 350px;*/
   right: 15%;
   left: 15%;
   top: 75px;
@@ -365,4 +365,8 @@ border:1px solid #b2b2b2;
 }
 .popUpContent{
   opacity: 0.5
+}
+
+div>button>a{
+  text-decoration: none;
 }

@@ -45,12 +45,14 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var Ionic_Frontend = angular.module('IonicFrontend', ['ionic','ngResource','ngCordova','ngSanitize','ngCookies','ngTouch'])
+var Ionic_Frontend = angular.module('IonicFrontend', ['ionic','ngResource','ngCordova','ngSanitize','ngCookies','ngTouch','ngOpenFB'])
 
-Ionic_Frontend.run(function($ionicPlatform,$cordovaSplashscreen,$location,$rootScope,$ionicLoading,$cordovaDevice,$cordovaDialogs) {
+Ionic_Frontend.run(function($ionicPlatform,$cordovaSplashscreen,$location,$rootScope,$ionicLoading,$cordovaDevice,$cordovaDialogs,ngFB) {
   
    
   $ionicPlatform.ready(function() {
+    ngFB.init({appId: '395447443997745'});
+
     console.log("Inside Run:");
     $rootScope.$on('loading:show',function(){
        console.log("Inside Loading Show:");

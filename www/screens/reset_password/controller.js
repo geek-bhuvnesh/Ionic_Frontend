@@ -24,15 +24,6 @@ Ionic_Frontend.controller('resetPwdCtrl', ["resetPwdData", "$scope","$state", "$
 
             console.log("Reset Password Data on success:" + JSON.stringify(data));
             $scope.reset.password_changed = true;
-          /*  var cookiesdata = {'email':data.email,'username':data.username,
-                           'first_name':data.first_name,'last_name':data.last_name};
-            $cookies.user = {};
-            $cookies.user = JSON.stringify(cookiesdata);
-            $rootScope.$emit('userChange', data);
-
-            $scope.user_status.is_logged_in = true;*/
-
-            //$state.go('home');
             $scope.resetSuccess = true;
           },function(err){
             $scope.errorMessage = err.data;

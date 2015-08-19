@@ -2,33 +2,31 @@ Ionic_Frontend.controller('SettingController', ['$scope','$state','$cookieStore'
   
   console.log("Inside Setting Controller:");
   $scope.homeScreen = true;
-  /*console.log("stateParams:",$stateParams);
-  $scope.homeScreen = $stateParams.key;
-  console.log(">>>>>>>>>>>:",$scope.homeScreen)*/
-  //console.log("cookie:",$stateParams);
-   //alert("Inside Setting Controller cookieData:" + $cookieStore.get('loginDataCookie'));
-   /*var cookieData = $cookieStore.get('loginDataCookie');
-   $scope.cookies = $cookieStore.get('loginDataCookie')
-   console.log("cookieData:",cookieData);*/
 
-
-  /*$("body").css("background","url('./img/imagesecond.jpg')");*/
 
   $scope.popMessage = false;
   $scope.popupOpen = false;
   $scope.isDisabled = false;
+
+  if($rootScope.type!="normal"){
+    $rootScope.loginType.normalLogin = false;
+  }else{
+    $rootScope.loginType.normalLogin = true;
+  }
+ 
 
   $scope.height =  $("body").height();
   $scope.options = {
         ErrorMessage : "",
         showError : false
   }
-  $scope.userData = localstorageFactory.getObject("userData");;
+  $scope.userData = localstorageFactory.getObject("userData");
   console.log("userData in setting controlller:" + JSON.stringify($scope.userData));
- // alert("setting controller user data:" +JSON.stringify(userData));
 
-   $scope.logout = function(){
-    $cookieStore.remove('loginDataCookie');
+
+   $scope.logOut = function(){
+    localstorageFactory.removeObject("userData");
+   // localstorageFactory.remove("userData");
     $state.go('login');
    }
 
@@ -39,26 +37,13 @@ Ionic_Frontend.controller('SettingController', ['$scope','$state','$cookieStore'
   }) 
 
   $scope.goTOHome = function(){
-    console.log("Inside go to home:" +  $scope.userData._id);
+    /*console.log("Inside go to home:" +  $scope.userData._id);*/
     $rootScope.$broadcast("fromSetting",$scope.homeScreen);
-    $state.go('home',{userId:$scope.userData._id});
+    console.log("userId",$stateParams.userId);
+    console.log("type",$rootScope.type);
+    $state.go('home', {userId: $stateParams.userId,type:$rootScope.type})
   }
 
-  /*$scope.backToHome = function(){
-     alert("state changed to home:");
-     console.log(">>>>>>>>>>>>>>>>>>");
-     //$state.go('home', {}, {reload: true});
-     $ionicHistory.clearCache()
-     $state.go('home');
-     //$window.location.reload(true)
-   }*/
-
-/*ui-sref="home"*/
-  /*$scope.backButton = function(){
-    alert("Inside back button:");
-    $state.go('home');
-    /*$scope.$apply();
-  }*/
        // Create our modal
   $ionicModal.fromTemplateUrl('changepassword.html', function(modal) {
   	console.log("---------------------");
@@ -97,12 +82,6 @@ Ionic_Frontend.controller('SettingController', ['$scope','$state','$cookieStore'
     $scope.changePasswordModal.hide();
   }
 
-  /*document.getElementById.onkeypress =function(event){
-    console.log("inside on key press:");
-    $("body").height($scope.height);
-    alert(">>>>>on key press height:" + $("body").height());
-   // $scope.errorMessage = "here error accur";
-  }*/
   $scope.change_password_data = {
     "current_password":"",
     "new_password": "",
@@ -114,14 +93,11 @@ Ionic_Frontend.controller('SettingController', ['$scope','$state','$cookieStore'
   $scope.changePassword = function(cookie) {
     $scope.options.showError = false;
 
-    /*console.log("Changepassword is called",cookieData); */
-   /* alert("inside change password cookieData:" + cookieData);
-    alert("cookie:"+cookie);*/
-    //var userid = "geek.bhuvnesh@gmail.com";
+
     var userid = $scope.userData.email_id;
     if (userid) {
-      /*var userid = cookie.email_id;*/
-      console.log("userid>>>>>>",userid)
+  
+      console.log("userid:",userid)
       //alert("userid:" + userid);
       $scope.change_password_data.current_password = $sanitize($scope.change_password_data.current_password);
       $scope.change_password_data.new_password = $sanitize($scope.change_password_data.new_password);
@@ -185,42 +161,13 @@ Ionic_Frontend.controller('SettingController', ['$scope','$state','$cookieStore'
             $timeout(function() {
                $scope.changePasswordModal.hide();
             },2000);
-         /* var myPopup = $ionicPopup.show({
-              title: 'Message',
-              template: '<div><p ><b>Password Changed Successfully</b></p></div>'
-          })
-          myPopup.then(function(res){
-              console.log("alert response:" + res);
-              $scope.changePasswordModal.hide();
-          });
-          console.log("myPopup>>>",myPopup);
-          $timeout(function() {
-              myPopup.close(); //close the popup after 6 seconds for some reason
-          },2000);*/
+    
           
         },function(err){  
           $scope.options.showError = true;
           $ionicLoading.hide();
           $scope.errorMessage = err.data;
         })
-
-       /*$http.post("http://192.168.100.129:5000/changepassword/" + userid,
-            {
-            new_password:changePasswordData.new_password,
-            old_password:changePasswordData.current_password,
-            withCredentials:true
-            },
-            {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-       }).success(function (data, status, headers, config) {
-          console.log("changed password data:" + JSON.stringify(data));
-           $scope.changePasswordModal.hide();
-          
-       }).error(function (data, status, headers, config) {
-        console.log("error:",data);
-      });*/
 
       } /*else {
         //$scope.loginPopup();

@@ -45,12 +45,14 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var Ionic_Frontend = angular.module('IonicFrontend', ['ionic','ngResource','ngCordova','ngSanitize','ngCookies','ngTouch'])
+var Ionic_Frontend = angular.module('IonicFrontend', ['ionic','ngResource','ngCordova','ngSanitize','ngCookies','ngTouch','ngOpenFB'])
 
-Ionic_Frontend.run(function($ionicPlatform,$cordovaSplashscreen,$location,$rootScope,$ionicLoading,$cordovaDevice,$cordovaDialogs) {
+Ionic_Frontend.run(function($ionicPlatform,$cordovaSplashscreen,$location,$rootScope,$ionicLoading,$cordovaDevice,$cordovaDialogs,ngFB) {
   
    
   $ionicPlatform.ready(function() {
+    ngFB.init({appId: '395447443997745'});
+
     console.log("Inside Run:");
     $rootScope.$on('loading:show',function(){
        console.log("Inside Loading Show:");
@@ -121,6 +123,10 @@ Ionic_Frontend.factory('localstorageFactory', ['$window', function($window) {
     getObject: function(key) {
       //unserialize it using the JSON.parse before using it
       return JSON.parse($window.localStorage[key] || '{}');
+    },
+    removeObject : function(key){
+      console.log("key:",key);
+      return $window.localStorage.clear();
     }
   }
 }]);
@@ -176,7 +182,7 @@ Ionic_Frontend.config(function($stateProvider,$urlRouterProvider, $cordovaInAppB
         controller: 'RegistrationController'
     }).state('home',{
         //abstract: true,
-        url:'/home/:userId',
+        url:'/home/:userId/:type',
         templateUrl: 'screens/home-screen/home.html',
         resolve: {
                 Customers:  function($http,$stateParams,CustomerDataService) {
@@ -184,7 +190,9 @@ Ionic_Frontend.config(function($stateProvider,$urlRouterProvider, $cordovaInAppB
                   console.log("customers:" + JSON.stringify(data));
                     //return data;
                  });*/
-                return CustomerDataService.fetchCustomers($stateParams.userId);
+                console.log("userId:" + $stateParams.userId);
+                console.log("type:" + $stateParams.type);
+                return CustomerDataService.fetchCustomers($stateParams.userId,$stateParams.type);
                }        
         },
         controller: 'HomeController',
@@ -203,7 +211,7 @@ Ionic_Frontend.config(function($stateProvider,$urlRouterProvider, $cordovaInAppB
         controller: 'resetPwdCtrl'
     }).state('settings',{
         //cache: false,
-        url:  '/setting',
+        url:  '/setting/:userId',
         templateUrl: 'screens/settings/settings.html',
         controller: 'SettingController'
     }).state('popup',{

@@ -15,25 +15,12 @@ Ionic_Frontend.controller('forgetPwdCtrl', ["forgetPwdData", "$scope","$sanitize
 
     console.log("ForgetPassword is called");
 	  var emailid = $sanitize($scope.forgetPassword.emailid);
-    // console.log("login details are  " + JSON.stringify(user) );
     if(emailid) {
   	forgetPwdData.forgetPasswordFn(emailid).then(function(data){
         console.log("Forget Password Result:",data);
         $scope.popupOpen = true;
         $scope.popMessage = true; 
         $scope.isDisabled = true;
-        /*var myPopup = $ionicPopup.show({
-            title: 'Message',
-            template: 'Please Check your mail,email has been sent to reset Password:'
-        })
-        myPopup.then(function(res){
-           console.log("alert response:" + res);
-        });
-        $timeout(function() {
-           // myPopup.close(); //close the popup after 2 seconds for some reason
-           // $state.go('login');
-        }, 2000);*/
-        //$state.go('login');
       
        $scope.poupmessage ="Please Check your mail,email has been sent to reset Password";
 
@@ -50,11 +37,6 @@ Ionic_Frontend.controller('forgetPwdCtrl', ["forgetPwdData", "$scope","$sanitize
       $scope.errorMessage = 'Please enter a valid Emailid';
     } 
   } 
-
-  /*$buttonTapped = function(button,$event){
-    
-     
-  }*/
 
   $("div>button").click(function(){
      console.log(">>>>>>>>>>>>>>");

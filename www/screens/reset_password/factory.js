@@ -1,5 +1,6 @@
-Ionic_Frontend.factory("resetPwd", ["$resource", function($resource) {
-   return $resource("http://223.30.167.150:5500/resetpassword/:reset_pass_token/:emailid", {
+Ionic_Frontend.factory("resetPwd", ["$resource","ionicconfig", function($resource,ionicconfig) {
+   return $resource(ionicconfig.url +":5500/resetpassword/:reset_pass_token/:emailid", { 
+   //return $resource("http://223.30.167.150:5500/resetpassword/:reset_pass_token/:emailid", {
   // return $resource("http://54.201.235.119:3000/resetpassword/:fp_code/:emailid", {
      reset_pass_token: '@reset_pass_token',
      emailid: '@emailid'

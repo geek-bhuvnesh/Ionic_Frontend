@@ -1,46 +1,44 @@
-Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDelegate','$ionicModal','$sanitize','$cookieStore','CustomerDataService','$state','localstorageFactory','$ionicLoading','$ionicPopup','$timeout','$rootScope','Customers',function($scope,$http,$ionicSideMenuDelegate,$ionicModal,$sanitize,$cookieStore,CustomerDataService,$state,localstorageFactory,$ionicLoading,$ionicPopup,$timeout,$rootScope,Customers){
+Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDelegate','$ionicModal','$sanitize','$cookieStore','CustomerDataService','$state','localstorageFactory','$ionicLoading','$ionicPopup','$timeout','$rootScope','Customers','$stateParams',function($scope,$http,$ionicSideMenuDelegate,$ionicModal,$sanitize,$cookieStore,CustomerDataService,$state,localstorageFactory,$ionicLoading,$ionicPopup,$timeout,$rootScope,Customers,$stateParams){
   console.log("Inside Home Controller");
   $scope.homeScreen = true;
-  //$rootScope.$on('loading:hide');
+ 
   $ionicLoading.hide();
-  /*$("body").height(1100);*/
-  //alert("move to Home controller:");
-    // Get cookie
- // var userLoginDataCookie = $cookieStore.get('loginDataCookie');
-  //console.log("userLoginDataCookie>>>",userLoginDataCookie);
-
-  //$scope.cookie = userLoginDataCookie;
-
-  //$scope.userName = userLoginDataCookie.email_id;
-  //$scope.userId = userLoginDataCookie._id;
-  /*$scope.userName = "geek.bhuvnesh@gmail.com";
-  $scope.userId = "559ebbf3de8dd3840c75fe63";*/
-  
   $scope.popMessage = false;
   $scope.popupOpen = false;
-
   $scope.customers = Customers;
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>Before:" + JSON.stringify($scope.customers));
   if($scope.customers.length>0){
     $scope.allCustomers = $scope.customers.reverse();
   } else{
     $scope.allCustomers =[];
   }
-
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>After:" + JSON.stringify($scope.allCustomers));
   $scope.height = $(window).height();
-  //alert("$scope.height in home controller:" +$scope.height);
   $("body").css("background","rgba(211,211,211,.8)");
-
-  //alert("home screen height:" +  $scope.height);
   
   var userData = localstorageFactory.getObject("userData");
-  console.log("userData>>>>>>>>>>" + JSON.stringify(userData));
-  
-  //alert("Home controller user data:" +JSON.stringify(userData));
-   
+  console.log("userData:" + JSON.stringify(userData));
+
   $scope.userName = userData.email_id;
-  $scope.userId = userData._id;
+
+  if($stateParams.type == 'normal'){
+     $scope.userId = userData._id;
+     $rootScope.type = $stateParams.type;
+  }else{
+    $scope.userId = $stateParams.userId;
+    $rootScope.type = $stateParams.type;
+    //alert("login type in home controller:" +$rootScope.type);
+    $http.get('http://localhost:5500/getSocialUserDetails/' + $scope.userId +'/' + $rootScope.type,{
+      headers: {
+         'Content-Type': 'application/json'
+      }
+    }).success(function(data,status,headers,config){
+       console.log("social login data:" + JSON.stringify(data));
+
+    }).error(function(data,status,headers,config){
+       console.log("social login error:" + JSON.stringify(data));
+
+    })
+  }
+  
 
    $scope.addCustomerData = {
     "name" : "",
@@ -60,7 +58,8 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
 
   $scope.goToSetting = function(){
     console.log("Inside go to setting:",$scope.homeScreen);
-    $state.go('settings');
+    //alert("userId in goToSetting:"+$stateParams.userId);
+    $state.go('settings',{userId:$stateParams.userId});
     $rootScope.$broadcast("fromHomeScreen",$scope.homeScreen);
   };
 
@@ -74,61 +73,6 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
     $scope.homeScreen = true;
    //$("a").css("background-color: #387ef5;");
   }
-  //alert("1:");
-  /* $http.get("http://192.168.100.98:5500/allCustomers/" + $scope.userId, {
-            headers: {
-                'Content-Type': 'application/json'
-        }
-    }).success(function (data, status, headers, config) {
-        console.log("Data All customers:" + JSON.stringify(data));
-        if(data.length>0){
-           $scope.allCustomers = data.reverse();
-        }
-        console.log("array after reverse:" + JSON.stringify($scope.allCustomers));
-        if(data.length>0){
-           $scope.allCustomers = data;
-           console.log("Before remove array:" + JSON.stringify($scope.allCustomers));
-           var item =  $scope.allCustomers.splice($scope.allCustomers.length-1,1)
-           console.log("After remove array:" + JSON.stringify($scope.allCustomers));
-           console.log("item remove:"+JSON.stringify(item));
-           //for(var i=0;i<)
-           $scope.allCustomers.splice(0,0,item);
-           console.log("updated array:" + JSON.stringify($scope.allCustomers));
-        }
-        
-        $scope.height = $(".pane, .view").height();
-        //console.log("height:",height);
-        //alert("$scope.height:"+$scope.height);
-    }).error(function (data, status, headers, config) {
-        console.log("error:",data);
-    });*/
-
-  /*  //alert("2:");
-  var obj= {
-     "menu_name" : "Color",
-     "menu_name" : "Hi"
-    }
-  console.log("obj:",obj);*/
- 
- /* $scope.leftToggle = false;
-  var count = 0;
-  $scope.toggleSideMenu = function() {
-    count++;
-    console.log("count:",count);
-    console.log("Inside toggleProjects function" );
-    $ionicSideMenuDelegate.toggleLeft();
-    if(count%2!=0){
-      $scope.leftToggle = true;
-    }else{
-      $scope.leftToggle = false;
-    }
-
-  };
-     //alert("3:");
-
-  $scope.toggleSideMenuRight = function() {
-  	$ionicSideMenuDelegate.toggleRight();
-  }*/
     // Create our modal
 
   $scope.doRefresh = function() {
@@ -166,12 +110,7 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
     $scope.popupOpen = false;
     $scope.popMessage = false; 
     $scope.isDisabled = false;
-   /* if($("div.modal-wrapper")){
-        $("div.modal-wrapper").height($("body").height());
-        //alert("height set:");
-    } else{
-        alert("wrapper class not found:");
-    }*/
+
     $scope.options.showError = false;
     $(".modal, .pane").height($scope.height);
     $(".modal, .pane").css("background","rgba(211,211,211,.8)");
@@ -211,28 +150,11 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
     $scope.awesome = true;
   	console.log("$scope.updateCustomeData:",$scope.updateCustomeData);
     $scope.updateCustomerModal.show();
-    //console.log("dynamic div:" ,$("div.modal-wrapper"));
-    //alert("height before set:" +  $("div.modal-wrapper").height());
-    /* if($("div.modal-wrapper")){
-        $("div.modal-wrapper").height($("body").height());
-        //alert("height set:");
-      } else{
-        alert("wrapper class not found:");
-      }
-   */
     $scope.options.showError = false;
     $(".modal, .pane").height($scope.height);
     $(".modal, .pane").css("background","rgba(211,211,211,.8)");
   }
 
-  /*$scope.change = function(event){
-    console.log("<<<<<<",event.keyCode);
-    /*if(event.keyCode){
-     $(".modal, .pane").height($scope.height);
-     $(".modal, .pane").css("background","rgba(211,211,211,.8)");
-   /* }
-
-  }*/
   $scope.closeUpdateCustomer = function() {
     console.log("Inside updateCustomerModal Hide:");
     $timeout(function(){
@@ -248,18 +170,11 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
   $scope.isDisabled = false;
   $scope.submitAddCustomer = function() {
     $scope.options.showError = false;
-    /*$(".modal, .pane").height($scope.height);
-    $(".modal, .pane").css("background","rgba(211,211,211,.8)");*/
     console.log("Inside submitAddCustomer:",$scope.addCustomerData);
   	$scope.addCustomerData.name = $sanitize($scope.addCustomerData.name);
     $scope.addCustomerData.email = $sanitize($scope.addCustomerData.email);
     $scope.addCustomerData.address = $sanitize($scope.addCustomerData.address);
 
-    console.log(">>>>>>>>>>>>>>>$scope.addCustomerData.name:",$scope.addCustomerData.name);
-    console.log("$scope.addCustomerData.email:",$scope.addCustomerData.email);
-    console.log("$scope.addCustomerData.address:",$scope.addCustomerData.address);
-
-    console.log("-----------------------------------------------------------");
     if($scope.addCustomerData.name.length<3){
         console.log("Error:");
         $scope.options.showError = true;
@@ -279,27 +194,15 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
             console.log("Before remove array:" + JSON.stringify($scope.allCustomers));
             $scope.allCustomers.splice(0,0,data);
             console.log("$scope.allCustomers After customer Add:" + JSON.stringify($scope.allCustomers));
-           /* var myPopup = $ionicPopup.show({
-              title: 'Message',
-              template: '<div><p ><b>Customer Added Successfully</b></p></div>'
-            })
-            myPopup.then(function(res){
-              //console.log("alert response:" + res);
-            });*/
+      
             $scope.isDisabled = true;
             $scope.popupOpen = true;
-            /*$scope.popupModal.show();*/
             $scope.popMessage = true; 
             $scope.poupmessage ="Customer Added Successfully";
 
             $timeout(function() {
                $scope.addCustomerModal.hide()
             },2000);
-           /* $timeout(function() {
-               
-               myPopup.close(); //close the popup after 6 seconds for some reason
-            }, 2000);
-            $state.go('home.addCustomer');*/
 
          },function (err) {
            console.log("add customer error:" + JSON.stringify(err));
@@ -319,9 +222,6 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
 
   $scope.saveUpdateCustomer = function(updateCustomerNewData){
     $scope.options.showError = false;
-  /* $(".modal, .pane").height($scope.height);
-   $(".modal, .pane").css("background","rgba(211,211,211,.8)");*/
-   /*alert("body height on add customer:" +$("body").height());*/
    console.log("updateCustomerNewData:",updateCustomerNewData);
    $scope.updateCustomerInfo ={};
    $scope.updateCustomerInfo.id = updateCustomerNewData._id;
@@ -349,20 +249,7 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
             $timeout(function() {
               $scope.updateCustomerModal.hide();
             },2000);
-            // $scope.popupModal.hide();
-            /*var myPopup = $ionicPopup.show({
-              title: 'Message',
-              template: '<div><p ><b>Customer Updated Successfully</b></p><div>'
-            });
-            myPopup.then(function(res){
-              //console.log("alert response:" + res);
-            });*/
 
-            /*$timeout(function() {
-               $scope.updateCustomerModal.hide();
-               myPopup.close(); //close the popup after 6 seconds for some reason
-            },2000);
-*/
          },function (err) {
            $ionicLoading.hide();
            $scope.options.showError = true;
@@ -377,7 +264,6 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
  
   }
 
-
   $ionicModal.fromTemplateUrl('addCustomerDetails.html', function(modal) {
   	console.log("----addCustomerDetailsModal.html---");
     $scope.addCustomerDetailsModal = modal;
@@ -388,12 +274,8 @@ Ionic_Frontend.controller('HomeController',['$scope','$http','$ionicSideMenuDele
   });
   
   $scope.addCustomerDetails = function(index) {
-  	 console.log("index:",index);
-  	 console.log("$scope.allCustomers:",$scope.allCustomers);
-     console.log("$scope.allCustomers[index]:",$scope.allCustomers[index]);
-      console.log("RelativeObj:",$scope.RelativeObj);
-      $scope.RelativeObj["id"] = $scope.allCustomers[index]._id;
-      console.log("RelativeObj after id:",$scope.RelativeObj);
+
+     $scope.RelativeObj["id"] = $scope.allCustomers[index]._id;
      $scope.addCustomerDetailsModal.show();
   }
 

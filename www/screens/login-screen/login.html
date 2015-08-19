@@ -8,7 +8,7 @@
                     <button class="button button-clear" ng-click="closeLogin()">Close</button>
                 </div> -->
             </ion-header-bar>
-            <ion-content>
+            <ion-content scroll="false">
                 <form target='_blank' class="loginForm" ng-submit="validateLogin()" name="login" novalidate>
                     <div class="list">
                         <label class="item item-input">
@@ -37,17 +37,46 @@
                             <button class="button button-block button-positive" type="submit"  ng-disabled="login.email.$dirty && login.email.$invalid" ng-cloak>
                                 Log In
                             </button>
-                        </label>                  
+                        </label> 
+                                       
                     </div>
                 </form>
-                <div style="margin-top:10px;">
-                <p style="color: darkorange;">Forgot your password? 
-                <a ui-sref="forgetpassword" nav-transition="none" ng-click="resetPassword()">Reset your password.</a>
-                </p>
-                <p style="color: darkorange;"> Don't have an account yet? 
-                <a nav-transition="none" ui-sref="register">Register Here.</a>
-                </p>
-                </div>   
+                <div id="facebook" class="your_details"><a href="{{homeurl}}:5500/auth/facebook/login">
+                <div class="socialButtonLogin fb log_socialbtn">
+                    Login with Facebook
+                </div></a>
+              </div>
+              <div id="google" class="your_details"><a href="{{homeurl}}:5500/oauth2/google/login">
+               <div class="socialButtonLogin gp log_socialbtn">  
+                   Login with Google
+               </div> </a>
+              </div>
+              <div id="twitter" class="your_details"><a href="{{homeurl}}:5500/auth/twitter/login">
+                <div class="socialButtonLogin tw log_socialbtn">
+                  Login with Twitter
+               </div></a>
+              </div>
+              <div style="margin: 0 auto; width: 80%;">
+                <div>
+                  <p style="color: darkorange;">Forgot your password? 
+                  <a ui-sref="forgetpassword" nav-transition="none" ng-click="resetPassword()">Reset your password.</a>
+                  </p>
+                </div>
+                <div>
+                  <p style="color: darkorange;"> Don't have an account yet? 
+                  <a nav-transition="none" ui-sref="register">Register Here.</a>
+                  </p>
+                </div>
+              </div>
+          
+               
+               <!-- <div>
+                    <button class="button button-block button-positive">
+                        <a href="/auth/github/login">
+                         Login with Github
+                        </a>
+                    </button>    
+              </div>        -->  
             </ion-content>
           </ion-view>  
       <!--   </div> -->

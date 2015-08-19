@@ -28,10 +28,10 @@ Ionic_Frontend.controller('RegistrationController', ['$scope', "$location", "$wi
         $scope.loginData.password = $sanitize($scope.loginData.password);
         $scope.loginData.confirmPassword = $sanitize($scope.loginData.confirmPassword);
 
-        if(validator.isByteLength($scope.loginData.name,3,10)){
-          alert("User Name must contain 3 charatcer and Max 10 char:");
+        if(!validator.isByteLength($scope.loginData.name,3,10)){
+          //alert("User Name must contain 3 charatcer and Max 10 char:");
           $scope.options.showError = true;
-          $scope.errorMessage = "User Name must contain 3 charatcer and Max 10 char:";
+          $scope.options.errorMessage = "User Name must contain 3 charatcer and Max 10 char:";
           $ionicLoading.hide();
           return;
         }
@@ -42,7 +42,7 @@ Ionic_Frontend.controller('RegistrationController', ['$scope', "$location", "$wi
         
         if(!validator.isEmail($scope.loginData.email)){
           $scope.options.showError = true;
-          $scope.errorMessage = "Please Enter valid Email:";
+          $scope.options.errorMessage = "Please Enter valid Email:";
           $ionicLoading.hide();
           return;
         }

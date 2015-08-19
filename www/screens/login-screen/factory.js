@@ -8,14 +8,15 @@
    });
 }]);*/
 
-Ionic_Frontend.factory("login",["$resource",function($resource) {
-   //console.log("ionicconfig.url:",ionicconfig.url);
+Ionic_Frontend.factory("login",["$resource","ionicconfig",function($resource,ionicconfig) {
+   console.log("ionicconfig.url:",ionicconfig.url);
 //localhost
    /*return $resource("http://192.168.100.44:5500/login", {*/
  /*    return $resource("http://223.30.167.150:5500/login", {*/
   // return $resource("http://54.201.235.119:3000/login", {
-        return $resource("http://192.168.100.98:5500/login", {
+        /*return $resource("http://192.168.100.98:5500/login", {*/
          /* return $resource("http://localhost:5500/login", {*/
+    return $resource(ionicconfig.url +":5500/login", {      
    },{
      save: {method:'POST', withCredentials:true}
    });

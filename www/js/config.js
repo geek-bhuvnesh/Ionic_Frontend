@@ -29,9 +29,13 @@ Ionic_Frontend.factory('ionicconfig', function(){
 
     var url = "";
     return {
-         /*url :'http://192.168.100.44',
-         url :'http://10.42.0.1'
-         url : 'http://localhost'*/
-         url: '192.168.100.129'
+        /* url :'http://192.168.100.44',*/
+         //url :'http://10.42.0.1'
+         //url : 'http://localhost'
+         /*url: '192.168.100.129'*/
+         /*url:'http://192.168.100.98'*/
+         //url:'ionic.com'
+         //url:'http://localhost'
+          url :'http://localhost',
     }
 });

@@ -29,6 +29,9 @@
         <label class="item item-input">
           <input type="password" placeholder="ConfirmPassword" ng-model="loginData.confirmPassword">
         </label>
+        <label class="item item-input" style="color:red" ng-show="options.showError">
+            <span>{{options.errorMessage}}</span>
+        </label>
         <div>
           <button class="button button-block button-positive" ng-disabled="register.username.$dirty &&  register.username.$invalid ||
           register.email.$dirty && register.email.$invalid" type="submit">Create account</button>

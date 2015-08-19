@@ -1,9 +1,12 @@
 
-Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$ionicModal','$state','$cordovaToast','$sanitize','LoginDataService','$cookieStore','$ionicLoading','localstorageFactory','$ionicHistory','$ionicPopup','$timeout','$rootScope',function ($scope, $location, $window, $ionicModal, $state, $cordovaToast,$sanitize,LoginDataService,$cookieStore,$ionicLoading,localstorageFactory,$ionicHistory,$ionicPopup,$timeout,$rootScope) {
+Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$ionicModal','$state','$cordovaToast','$sanitize','LoginDataService','$cookieStore','$ionicLoading','localstorageFactory','$ionicHistory','$ionicPopup','$timeout','$rootScope','ngFB','ionicconfig','$http',function ($scope, $location, $window, $ionicModal, $state, $cordovaToast,$sanitize,LoginDataService,$cookieStore,$ionicLoading,localstorageFactory,$ionicHistory,$ionicPopup,$timeout,$rootScope,ngFB,ionicconfig,$http) {
     //Admin User Controller (login, logout)
     console.log("Inside Login Controller:");
+    console.log("$location path:",$location.path());
+    //http://192.168.100.44:8100/#/home/55af1afe18c32ff40d4e090c
+    $scope.location = encodeURIComponent('/#/home/55af1afe18c32ff40d4e090c');
     //$("body").height(1100);
-    /*var height = document.body.clientHeight;
+    /*var height = document.body.clie$location.path()tHeight;
     console.log("Height:",height);
     var height1 = $window.innerHeight;
     console.log("height1:",height1);*/
@@ -12,7 +15,9 @@ Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$i
     console.log("after set height:",$window.innerHeight);*/
    // $state.go('register');
     
-   
+    //$scope.homeurl = ionicconfig.url;
+    $scope.homeurl = 'http://localhost'
+    console.log("$scope.homeurl:",$scope.homeurl);
     $scope.height = $(window).height();
  /* $("body").height($scope.height);*/
    // alert("Login height:"+$scope.height);
@@ -51,36 +56,24 @@ Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$i
     //$scope.loginPopUp = true;
     $scope.name = "";
     $scope.validateLogin = function () {
-       /* $ionicHistory.clearHistory();
-        $ionicHistory.clearCache();*/
-
-       
+  
 
        console.log(">>>>>>>>>>>>>:" + $scope.height);
        $("body").height($scope.height);
        $("body").css("background","rgba(211,211,211,.8)");
-       //alert("$scope.height1:" + $("body").height());
-        //console.log(">>>>>>>>" +$("body").height());
-        /*$ionicLoading.show({
-             template:  '<p>Loading...</p><ion-spinner></ion-spinner>'
-        },{
-            noBackdrop: true
-        })*/
-         
+
       $rootScope.$broadcast('loading:show');
 
-  /* User.get().then(function(user){
-  $scope.user = user;
-}).finally(function(){
-  $rootScope.$broadcast('loading:hide');
-});*/
+
         $ionicHistory.nextViewOptions({
             disableAnimate: true,
             disableBack: true,
             historyRoot: true
         });
 
-        if(validator.isEmail($scope.loginData.username)){
+        
+       
+      if(validator.isEmail($scope.loginData.username)){
          alert("email proper");
    
 
@@ -102,9 +95,9 @@ Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$i
                 //$cookieStore.put('loginDataCookie',data);
                 console.log("Data Login:" + JSON.stringify(data));
                 localstorageFactory.setObject("userData",data);
-               /* $timeout(function() {*/
+               // $timeout(function() {
                 $state.go('home', {userId: data._id});
-               /* }, 1000);*/
+               // }, 1000);
 
             },function (err) {
                $ionicLoading.hide();
@@ -113,10 +106,10 @@ Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$i
                console.log("err:",err);
                $scope.options["ErrorMessage"] = "Username or Password wrong";
                
-          }).finally(function() {
+            }).finally(function() {
                //$rootScope.$broadcast('loading:hide');
                $scope.$broadcast('scroll.refreshComplete');
-          });
+            });
 
         }
 
@@ -127,10 +120,35 @@ Ionic_Frontend.controller('LoginController', ['$scope','$location','$window','$i
           console.log("email address is not valid:");
           $scope.options["ErrorMessage"] = "Please Enter valid Email address";
       }
-    }
+   
+  }
 
-   /* $scope.closeLogin = function() {
-        $scope.loginPopUp = false;
-    }
-   */
+ 
+   /* $scope.fbLogin = function () {
+      console.log("Inside fb login:");
+        ngFB.login({scope: 'email,publish_actions'}).then(function(response) {
+          console.log("Fblogin login" +response);
+            if (response.status === 'connected') {
+                console.log('Facebook login succeeded');
+                $scope.closeLogin();
+            } else {
+                alert('Facebook login failed');
+            }
+        });
+    };*/
+
+  $scope.facebookLogin = function(){
+    console.log("<<<<<<<<<<<<<<<<<<");
+    $http.get(ionicconfig.url + ":5500/auth/facebook/login", {
+    }).success(function (data, status, headers, config) {
+       console.log("data");
+       $state.go('home', {userId: "55b701b46e457cc20c6ca23t"});
+       
+    }).error(function (data, status, headers, config) {
+      console.log("err is " + JSON.stringify(data));
+    });
+
+  }  
+
+
 }]);

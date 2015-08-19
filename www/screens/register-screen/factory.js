@@ -1,7 +1,6 @@
-Ionic_Frontend.factory("signup", ["$resource", function($resource) {
+Ionic_Frontend.factory("signup", ["$resource","ionicconfig", function($resource,ionicconfig) {
    /*return $resource("http://192.168.100.44:5500/signup", {  */
-  /* return $resource("http://223.30.167.150:5500/signup", {*/
-  return $resource("http://192.168.100.98:5500/signup", {
+  return $resource(ionicconfig.url +":5500/signup", { 
    },{});
 }]);
 

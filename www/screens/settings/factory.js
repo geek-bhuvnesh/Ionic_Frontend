@@ -1,8 +1,6 @@
-Ionic_Frontend.factory("changePwd", ["$resource", function($resource) {
+Ionic_Frontend.factory("changePwd", ["$resource","ionicconfig", function($resource,ionicconfig) {
    /*return $resource("http://192.168.100.44:5500/changepassword/:userId", {*/
-   /*return $resource("http://223.30.167.150:5500/changepassword/:userId", {*/
-  // return $resource("http://54.201.235.119:3000/users/email/:emailid/forgotpassword", {
-    return $resource("http://192.168.100.98:5500/changepassword/:userId", {
+   return $resource(ionicconfig.url+":5500/changepassword/:userId", {
      userId: '@userId'
    },{
       save: {method:'POST', withCredentials:true}
